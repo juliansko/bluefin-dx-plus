@@ -22,3 +22,6 @@ dnf install eduvpn-client -y
 
 # Add Flutter Dev Dependencies
 dnf install ninja-build clang cmake pkg-config gtk3-devel xz-devel xz-libs libstdc++-devel -y
+
+# Add Pop Shell
+dnf install gnome-shell-extension-pop-shell
