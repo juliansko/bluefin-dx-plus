@@ -20,11 +20,14 @@ gpgcheck=1
 EOF
 dnf install eduvpn-client -y
 
-# Add Proton Apps
+# Install Brave
+curl -fsSLo /etc/yum.repos.d/brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+dnf install brave-browser -y
 
+# Add Proton Apps
 wget "https://repo.protonvpn.com/fedora-$(cat /etc/fedora-release | cut -d' ' -f 3)-unstable/protonvpn-beta-release/protonvpn-beta-release-1.0.2-1.noarch.rpm"
-dnf install ./protonvpn-beta-release-1.0.2-1.noarch.rpm -y --nogpgcheck
-dnf install proton-vpn-gnome-desktop -y --nogpgcheck
+dnf install --nogpgcheck ./protonvpn-beta-release-1.0.2-1.noarch.rpm -y 
+dnf install --nogpgcheck proton-vpn-gnome-desktop -y 
 
 # Add Flutter Dev Dependencies
 dnf install ninja-build clang cmake pkg-config gtk3-devel xz-devel xz-libs libstdc++-devel -y
