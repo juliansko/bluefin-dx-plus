@@ -23,8 +23,8 @@ dnf install eduvpn-client -y
 
 # Add Proton Apps
 wget "https://repo.protonvpn.com/fedora-$(cat /etc/fedora-release | cut -d' ' -f 3)-unstable/protonvpn-beta-release/protonvpn-beta-release-1.0.2-1.noarch.rpm"
-dnf install --nogpgcheck ./protonvpn-beta-release-1.0.2-1.noarch.rpm -y 
-dnf install --nogpgcheck proton-vpn-gnome-desktop -y 
+dnf install -- --nogpgcheck ./protonvpn-beta-release-1.0.2-1.noarch.rpm -y 
+dnf install -- --nogpgcheck proton-vpn-gnome-desktop -y 
 
 # Add Flutter Dev Dependencies
 dnf install ninja-build clang cmake pkg-config gtk3-devel xz-devel xz-libs libstdc++-devel -y
