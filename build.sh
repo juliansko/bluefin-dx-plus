@@ -20,12 +20,6 @@ gpgcheck=1
 EOF
 dnf install eduvpn-client -y
 
-# Install Brave
-dnf install dnf-plugins-core
-
-dnf5 config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-
-dnf install brave-browser -y
 
 # Add Proton Apps
 wget "https://repo.protonvpn.com/fedora-$(cat /etc/fedora-release | cut -d' ' -f 3)-unstable/protonvpn-beta-release/protonvpn-beta-release-1.0.2-1.noarch.rpm"
