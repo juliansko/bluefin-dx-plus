@@ -9,16 +9,18 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# this installs a package from fedora repos
-dnf install -y tmux 
+# Add EduVPN
+curl -O https://app.eduvpn.org/linux/v4/rpm/app+linux@eduvpn.org.asc
+rpm --import app+linux@eduvpn.org.asc
+cat << 'EOF' | sudo tee /etc/yum.repos.d/python-eduvpn-client_v4.repo
+[python-eduvpn-client_v4]
+name=eduVPN for Linux 4.x (Fedora $releasever)
+baseurl=https://app.eduvpn.org/linux/v4/rpm/fedora-$releasever-$basearch
+gpgcheck=1
+EOF
+dnf install eduvpn-client
 
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
-
-#### Example for enabling a System Unit File
-
-systemctl enable podman.socket
+# Add Proton Apps
+wget "https://repo.protonvpn.com/fedora-$(cat /etc/fedora-release | cut -d' ' -f 3)-unstable/protonvpn-beta-release/protonvpn-beta-release-1.0.2-1.noarch.rpm"
+dnf install ./protonvpn-beta-release-1.0.2-1.noarch.rpm && check-update --refresh -y
+dnf install proton-vpn-gnome-desktop -y
