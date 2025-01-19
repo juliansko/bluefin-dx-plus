@@ -23,7 +23,7 @@ dnf install eduvpn-client -y
 # Install Brave
 dnf install dnf-plugins-core
 
-dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+dnf5 config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
 dnf install brave-browser -y
 
